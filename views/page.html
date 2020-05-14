@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- <script src="apifetch.js"></script> -->
+    <script>
+    function invalues(){
+        var title = document.getElementById('title').value;
+        var content = document.getElementById('content').value;
+        var formBody = JSON.stringify(
+            {
+            title: title,
+            content: content
+        });
+
+        console.log(formBody);
+    fetch('http://localhost:3000/feeds/post',{
+        method: 'POST',
+        body: formBody,
+     headers: {
+      'Content-Type':'application/json'
+        }
+  
+    })
+  .then(res=>res.json())
+  .then(resData=>console.log(resData))
+  .catch(err=>console.log(err));
+    }
+    
+    
+    
+
+function fetchValue(){
+    fetch('http://localhost:3000/feeds/posts')
+    .then(res=>res.json())
+    .then(resData=>console.log(resData))
+    .catch(err=>console.log(err));
+}
+
+// postbtn.addEventListener('click',function(){
+    
+// })
+
+// getbtn.addEventListener('click',function(){
+    
+// })
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" name="title" id="title" placeholder="title"><br><br>
+    <input type="text" name="content" id="content" placeholder="content"><br><br>
+    <button onclick="invalues()">Create Post</button>
+   
+    <button id="get" onclick="fetchValue()">See Post</button>
+</body>
+</html>
